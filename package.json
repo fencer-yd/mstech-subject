@@ -1,0 +1,26 @@
+{
+  "name": "mstech-subject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "author": "982039620@qq.com",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fencer-yd/mstech-subject.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fencer-yd/mstech-subject/issues"
+  },
+  "homepage": "https://github.com/fencer-yd/mstech-subject",
+  "dependencies": {
+    "rxjs": "^7.5.5"
+  },
+  "devDependencies": {
+    "mstech-eslint-config": "^1.0.19"
+  },
+  "peerDependencies": {
+    "rxjs": ">=7.0.0"
+  }
+}

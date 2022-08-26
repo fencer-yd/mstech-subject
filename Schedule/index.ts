@@ -74,6 +74,11 @@ export default class Schedule<T> {
     this.removeAll();
   }
 
+  destroy() {
+    this.stop();
+    this.subject.complete();
+  }
+
   private removeAll() {
     this.subscribeMap.forEach((subscription) => {
       subscription?.unsubscribe();

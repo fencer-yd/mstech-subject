@@ -7,24 +7,16 @@ enum Status {
   UNKNOWN = 0
 }
 
-class Schedule<T> {
-  private static _instance: Schedule<null>;
+export default class Schedule<T> {
   private status: Status = Status.UNKNOWN;
   private ab: AbortController = new AbortController();
-  private subject = new Subject<T>();
-  private isDebug: boolean = false;
+  private subject;
+  private isDebug: boolean;
   private subscribeMap: Map<string, Subscription> = new Map<string, Subscription>()
 
-  static get instance() {
-    if (this._instance) {
-      return this._instance;
-    } else {
-      this._instance = new Schedule();
-      return this._instance;
-    }
-  }
-
-  private constructor() {
+  constructor(isDebug?: boolean) {
+    this.isDebug = !!isDebug;
+    this.subject = new Subject<T>();
     this.subject.subscribe({
       next: value => {
         if (this.isDebug) {
@@ -105,5 +97,3 @@ class Schedule<T> {
     }
   }
 }
-
-export default Schedule.instance;

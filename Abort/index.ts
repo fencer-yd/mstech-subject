@@ -2,7 +2,7 @@
  * @Author: fencer yangd@mshutech.com
  * @Date: 2022-12-05 14:18:26
  * @LastEditors: fencer yangd@mshutech.com
- * @LastEditTime: 2022-12-05 14:21:46
+ * @LastEditTime: 2022-12-05 14:28:40
  * @FilePath: /mstech-subject/Abort/index.ts
  * @Description: abort
  */
@@ -27,24 +27,23 @@ export function Abort<T>() {
         return function () {
           return new Promise<T>((resolve, reject) => {
             const [ab] = Array.prototype.slice.call(arguments, -1);
-            if (ab instanceof AbortController) {
-              ab && ab.signal.addEventListener("abort", reject);
-            }
+            const canAbort = ab instanceof AbortController;
+            canAbort && ab.signal.addEventListener("abort", reject);
             const res = func.apply(self, arguments);
-            if (ab?.signal.aborted) reject("aborted");
+            canAbort && ab.signal.aborted && reject("aborted");
             if (res instanceof Promise) {
               res
                 .then(resolve)
                 .catch(console.error.bind(null, "[Abort Error]"))
                 .finally(() => {
-                  ab &&
+                  canAbort &&
                     ab.signal.removeEventListener(
                       "abort",
                       console.log.bind(null, "[Abort Removed]")
                     );
                 });
             } else {
-              ab &&
+              canAbort &&
                 ab.signal.removeEventListener(
                   "abort",
                   console.log.bind(null, "[Abort Removed]")

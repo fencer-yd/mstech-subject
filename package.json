@@ -1,6 +1,6 @@
 {
   "name": "mstech-subject",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "",
   "main": "index.ts",
   "scripts": {},
@@ -15,6 +15,7 @@
   },
   "homepage": "https://github.com/fencer-yd/mstech-subject",
   "dependencies": {
+    "reflect-metadata": "^0.1.13",
     "rxjs": "^7.5.5"
   },
   "devDependencies": {

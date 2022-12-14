@@ -8,4 +8,4 @@
  */
 export { default as SingleSubject } from "./SingleSubject";
 export { default as Schedule } from "./Schedule";
-export { Abort } from "./abort";
+export { Abort } from "./Abort";
